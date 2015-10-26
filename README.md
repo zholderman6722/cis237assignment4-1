@@ -1,11 +1,77 @@
-# Assignment 3 - Inheritance, Abstract Classes, Interfaces, and Polymorphism
-## Due: 10-20-2015
+# Assignment 4 - Interfaces, Stacks, Queues, Generics, and Merge Sort. Project uses Assignment 3 solution.
+## Due: 11-10-2015
 
 ## Author
 
-David Barnes
+
 
 ## Description
+
+The Jawas on Tatooine are pleased with the job you have done on the droid system so far. Since they started using it, they have decided that they would like to be able to sort thier list of droids in two different ways. It is your job to create these sorts for them.
+
+They would like to sort the droids by category. If the list is printed from this sort, the program will display the droids in the following order: (Astromech, Janitor, Utility, Protocol). There does not need to be any order to the droids within those categories.
+
+They would also like to sort the droids by the Total Cost ranging from the cheapest droid to the most expensive droid.
+
+You need to add menu options and methods to a finished assignment 3 to complete assignment 4, and add the above mentioned functionality.
+
+You should fork, and clone my Assignment 4. This will give you my finished implementation of Assignment 3 as a starting place. If you would rather use your implementation of assignment 3, just delete all of my classes, and add your classes in it's place. (Or replace the code of my classes with the code from your classes). This way you can still make a pull request. You are not required to use your implementation of Assignment 3. In fact, it would be easier for me to grade if you used mine, but you are free to use your own if that is easier, or what you would like to do.
+
+You should add some dummy data to the program to make testing easier. Once the droid collection is intanciated, you should hard code the insertion of some droids into the collection. Do enough so that you can test both sorts without having to use the UI to create droids. Personally I did 12, but any number that proves the sorts work is sufficent.
+
+The method by which both of these sorts get done is described below:
+
+### Categorize by model (Bucket sort)
+In order to sort the list by category, you will do the following things:
+* Add a method to your droid collection that will do this sort on the collection.
+* Create a generic stack class that can be used to store any type the user specifies. The implementation should be in the style of a linked list. (This is just like the generics we did in class. The Algorithms book has an implementation.)
+* Create a generic queue class that can be used to store any type the user specifies. The implementation should be in the style of a linked list. (The Algorithms book has an implementation.)
+* Create a stack for each type of droid (4 in total)
+* Create a queue of type high enough on the inheritance chain to store all of the droids (Just 1 of these)
+* Loop through your list of droids, and for each one
+* Determine what type of droid it is and Push the droid onto the appropriate stack.
+* Once all of the droids are on the various stacks, start Popping the droids off of the stacks and enqueue them in the Generic Queue. (Make sure you process the stacks in the correct order so that the order of the queue is the order specified above for the sort)
+* Once all of the droids are in the Queue, replace the original array / list of droids with the droids in the queue by dequeuing a droid one at a time, and placing it back into the array / list at the proper location.
+
+### Sort by Total Cost using Merge Sort
+In order to sort the list by the Total Cost, you will do the following things:
+* Add a method to your droid collection that will do this sort on the collection.
+* Make the IDroid Interface inherit from the built in interface called IComparable. This will require you to implement the CompareTo method in the Droid class.
+* Implement CompareTo in the Droid class, which will aid in the merge sort class
+* Create a MergeSort class that takes in an array by reference of type IComparabe[]. This wil allow the merge sort to sort any array that implements IComparable thanks to polymorphism. Any implementation is fine for this class, but it may be easier to do an array version (NOT linked list), and use an auxilary array to store temporary information. (The Algorithms book has a nice implementation that uses IComparable. I believe that they call it just Comparable in the Algorithms book, but it is the same thing.)
+
+The menu options and methods that you add should only sort the droid collection. Printing it should still be delegated to the print menu option that already exists. This means that sorting it will overwrite the original order, and that's okay.
+
+You are free to do anything above an beyond what is listed here. The only "Requirements" are listed below.
+
+Solution Must:
+* Add some hard coded droids to the droid collection.
+* Create Generic Stack class.
+* Create Generic Queue class.
+* Stack and Queue class must be Generic.
+* Update IDroid to inherit from IComparable.
+* Create MergeSort class.
+* Mergesort class must take an IComparable array as the input.
+* Update Program to allow options to sort by model, or by Total Cost.
+* Add methods to the Droid Collection class to do each of the sorts.
+* Use the Stack, and Queue to perform a bucket sort categorizing by model.
+* Use the MergeSort to perform a sort on the TotalCost.
+
+Below is the original Assignment 3 description for reference.
+
+### Notes
+
+Be sure to think about what the time complexity for the bucket sort will be. Think about how it compares to that of a normal sort such as Merge or Bubble. Also consider the space complexity compared to that of merge or bubble sort. You may see questions related to this on the next exam.
+
+## Outside Resources Used
+
+
+
+## Known Problems, Issues, And/Or Errors in the Program
+
+
+
+## Assignment 3 Description for reference
 
 The Jawas on Tatooine have recently opened a droid factory and they want to hire you to write a program to hold a list of the available droids, and the price of each droid. The price is based on the type: (protocol, utility, janitor, or astromech), the material used and the options selected by the Jawa creating the list.
 
@@ -85,17 +151,3 @@ Solution Must:
 * Use private, public and protected appropriately.
 * Use abstract, virtual, and override appropriately.
 * Have sufficient comments about what you are doing in the code.
-
-### Notes
-
-If you did not do well on Assignment 1, you may want to look at the Assignment 1 Key that I did for some help related to UI classes, Collection classes, arrays, and structure.
-
-It may be benificial for you to create extra methods within the droid sub classes. You are not limited to the ones mentioned. You may even find it useful to make some additional ones that are protected and virtual.
-
-## Outside Resources Used
-
-None
-
-## Known Problems, Issues, And/Or Errors in the Program
-
-None that I know of
