@@ -7,7 +7,7 @@
 
 ## Description
 
-The Jawas on Tatooine are pleased with the job you have done on the droid system so far. Since they started using it, they have decided that they would like to be able to sort thier list of droids in two different ways. It is your job to create these sorts for them.
+The Jawas on Tatooine are pleased with the job you have done on the droid system so far. Since they started using it, they have decided that they would like to be able to sort their list of droids in two different ways. It is your job to create these sorts for them.
 
 They would like to sort the droids by category. If the list is printed from this sort, the program will display the droids in the following order: (Astromech, Janitor, Utility, Protocol). There does not need to be any order to the droids within those categories.
 
@@ -60,6 +60,8 @@ Solution Must:
 Below is the original Assignment 3 description for reference.
 
 ### Notes
+
+The code in the Algorithms book for Stack, Queue, and Merge Sort are in Java. It will take a little work to translate it to C#, but it should be VERY close. Also note that the implementations in the book might not contain ALL of the funtionality you need, but should be really close. Be aware that you might want to add more funtionality to the implementations.
 
 Be sure to think about what the time complexity for the bucket sort will be. Think about how it compares to that of a normal sort such as Merge or Bubble. Also consider the space complexity compared to that of merge or bubble sort. You may see questions related to this on the next exam.
 
