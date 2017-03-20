@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Zachery Holderman
+//CIS237
+//Instructor: David Barnes
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +38,10 @@ namespace cis237assignment4
         {
             return base.ToString() +
                 "Number Of Languages: " + this.numberOfLanguages + Environment.NewLine;
+        }
+        public override int CompareTo(Droid otherDroid)
+        {
+            return this.TotalCost.CompareTo(otherDroid.TotalCost);
         }
     }
 }

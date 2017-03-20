@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Zachery Holderman
+//CIS237
+//Instructor: David Barnes
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +53,10 @@ namespace cis237assignment4
             return base.ToString() +
                 "Has Trash Compactor: " + this.hasTrashCompactor + Environment.NewLine +
                 "Has Vacuum: " + this.hasVacuum + Environment.NewLine;
+        }
+        public override int CompareTo(Droid otherDroid)
+        {
+            return this.TotalCost.CompareTo(otherDroid.TotalCost);
         }
     }
 }

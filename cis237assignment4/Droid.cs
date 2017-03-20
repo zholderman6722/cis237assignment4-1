@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Zachery Holderman
+//CIS237
+//Instructor: David Barnes
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +10,7 @@ using System.Threading.Tasks;
 namespace cis237assignment4
 {
     //Abstract class that implements the IDroid interface
-    abstract class Droid : IDroid
+    abstract class Droid : IDroid, IComparable<Droid>
     {
         //some protected variables for the class
         protected string material;
@@ -65,6 +68,11 @@ namespace cis237assignment4
             return "Material: " + this.material + Environment.NewLine +
                     "Model: " + this.model + Environment.NewLine +
                     "Color: " + this.color + Environment.NewLine;
+        }
+
+        public virtual int CompareTo(Droid otherDroid)
+        {
+            return this.TotalCost.CompareTo(otherDroid.totalCost);
         }
     }
 }

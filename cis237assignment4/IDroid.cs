@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Zachery Holderman
+//CIS237
+//Instructor: David Barnes
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

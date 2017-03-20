@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Zachery Holderman
+//CIS237
+//Instructor: David Barnes
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,12 +34,15 @@ namespace cis237assignment4
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add a new droid to the system");
             Console.WriteLine("2. Print the list of droids out");
-            Console.WriteLine("3. Exit the program");
+            Console.WriteLine("3. Sort Droids by type");
+            Console.WriteLine("4. Sort Droids by price");
+            Console.WriteLine("5. Exit.");
         }
 
         //Method to get a menu choice
         public int GetMenuChoice()
         {
+            
             //Display prompt and get the input from the user
             Console.Write("> ");
             string choice = Console.ReadLine();

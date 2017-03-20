@@ -2,7 +2,7 @@
 
 ## Due: 03-20-2017
 
-## Author
+## Zachery Holderman
 
 David Barnes
 
@@ -88,11 +88,11 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 
 ## Outside Resources Used
 
-Algorithms book by Sedgewick and Wayne
+Algorithms book by Sedgewick and Wayne, MSDN, and Princeton site supplied to us by David Barnes.
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-None that I know of
+None that I know of. - ZH
 
 ## Assignment 3 Description for reference
 

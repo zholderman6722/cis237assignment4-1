@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Zachery Holderman
+//CIS237
+//Instructor: David Barnes
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +14,11 @@ namespace cis237assignment4
     class DroidCollection : IDroidCollection
     {
         //Private variable to hold the collection of droids
-        private IDroid[] droidCollection;
+        private Droid[] droidCollection;
         //Private variable to hold the length of the Collection
         private int lengthOfCollection;
+        //auxillary array to temporarily hold existing array components
+        private Droid[] aux = new Droid [100];
 
         //Constructor that takes in the size of the collection.
         //It sets the size of the internal array that will be used.
@@ -21,7 +26,7 @@ namespace cis237assignment4
         public DroidCollection(int sizeOfCollection)
         {
             //Make new array for the collection
-            droidCollection = new IDroid[sizeOfCollection];
+            droidCollection = new Droid[sizeOfCollection];
             //set length of collection to 0
             lengthOfCollection = 0;
         }
@@ -124,5 +129,126 @@ namespace cis237assignment4
             //return the completed string
             return returnString;
         }
+        public void hardcodedDroids()
+        {
+            Add("Carbonite", "Protocol", "Bronze", 6);
+            Add("Vanadium", "Utility", "Silver", true, true, false);
+            Add("Quadranium", "Janitor", "Gold", false, true, false, true, true);
+            Add("Vanadium", "Astromech", "Silver", true, false, true, false, 12);
+            Add("Vanadium", "Utility", "Silver", true, false, true);
+            Add("Vanadium", "Astromech", "Silver", false, false, true, false, 6);
+            Add("Quadranium", "Janitor", "Gold", true, true, true, true, true);
+            Add("Carbonite", "Protocol", "Bronze", 12);
+            Add("Quadranium", "Astromech", "Gold", true, true, true, false, 6);
+            Add("Vanadium", "Protocol", "Silver", 18);
+            Add("Quadranium", "Janitor", "Bronze", false, false, false, false, true);
+            Add("Carbonite", "Utility", "Bronze", true, true, true);
+            
+        }
+        public void sortDroidTypes()
+        {
+            //Instanciate genericStacks & queue
+            GenericStack<Droid> protocolStack = new GenericStack<Droid>();
+            GenericStack<Droid> utilityStack = new GenericStack<Droid>();
+            GenericStack<Droid> janitorStack = new GenericStack<Droid>();
+            GenericStack<Droid> astromechStack = new GenericStack<Droid>();
+            GenericQueue<Droid> droidQueue = new GenericQueue<Droid>();
+
+            //loop through collection and put them into respective stacks based on their type
+            for (int i = 0; i < lengthOfCollection; i++)
+            {
+                if (droidCollection[i].GetType() == typeof(ProtocolDroid))
+                {
+                    protocolStack.push(droidCollection[i]);
+                }
+                else if (droidCollection[i].GetType() == typeof(UtilityDroid))
+                {
+                    utilityStack.push(droidCollection[i]);
+                }
+                else if (droidCollection[i].GetType() == typeof(JanitorDroid))
+                {
+                    janitorStack.push(droidCollection[i]);
+                }
+                else if (droidCollection[i].GetType() == typeof(AstromechDroid))
+                {
+                    astromechStack.push(droidCollection[i]);
+                }
+            }
+            //loop through while stack is not empty of each to put them in the queue and remove them from the stack
+            while (astromechStack.Size > 0)
+            {
+                droidQueue.Enqueue(astromechStack.pop());
+            }
+            while (janitorStack.Size > 0)
+            {
+                droidQueue.Enqueue(janitorStack.pop());
+            }
+            while (protocolStack.Size > 0)
+            {
+                droidQueue.Enqueue(protocolStack.pop());
+            }
+            while (utilityStack.Size > 0)
+            {
+                droidQueue.Enqueue(utilityStack.pop());
+            }
+            //loop back through droids putting them back into the droid array that should now be sorted.
+            for(int i = 0; i<lengthOfCollection; i++)
+            {
+                droidCollection[i] = droidQueue.Dequeue();
+            } 
+        }
+        private void sort(Droid[] a, int lo, int hi)
+        {
+            if (hi < lo)
+            {
+                return;
+            }
+            else
+            {
+                int mid = lo + ((hi - lo) / 2);
+                sort(a, lo, mid);
+                sort(a, mid + 1, hi);
+                merge(a, lo, mid, hi);
+            }
+        }
+        private void merge(Droid[] a, int lo, int mid, int hi)
+        {
+            int i = lo;
+            int j = mid + 1;
+            //copy the droids to the auxillary
+            for (int k = lo; k <= mid; k++)
+            {
+                aux[k] = a[k];
+            }
+            //loop through comparing points
+            for (int k = lo; k <= hi; k++)
+            {
+                //lo is greater than mid save mid+1
+                if (i > mid)
+                {
+                    a[k] = aux[j++];
+                }
+                //mid+1 is greater than hi save lo
+                else if (j > hi)
+                {
+                    a[k] = aux[i++];
+                }
+                //shift right droid left if total cost is less than the one on the left
+                else if (aux[j].CompareTo(aux[i]) < 0)
+                {
+                    a[k] = aux[j++];
+                }
+                //save lo 
+                else
+                {
+                    a[k] = aux[i++];
+                }
+            }
+        }
+        public void sortDroidCost()
+        {
+            sort(droidCollection, 0, lengthOfCollection - 1);
+        }
+
     }
 }
