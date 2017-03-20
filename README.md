@@ -92,7 +92,7 @@ Algorithms book by Sedgewick and Wayne, MSDN, and Princeton site supplied to us 
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-None that I know of. - ZH
+Null Pointer Exception in merge sort need to send in length or check for nulls.
 
 ## Assignment 3 Description for reference
 

@@ -199,7 +199,8 @@ namespace cis237assignment4
         }
         private void sort(Droid[] a, int lo, int hi)
         {
-            if (hi < lo)
+
+            if (hi <= lo)
             {
                 return;
             }
@@ -213,41 +214,41 @@ namespace cis237assignment4
         }
         private void merge(Droid[] a, int lo, int mid, int hi)
         {
-            int i = lo;
-            int j = mid + 1;
-            //copy the droids to the auxillary
-            for (int k = lo; k <= mid; k++)
-            {
-                aux[k] = a[k];
-            }
-            //loop through comparing points
-            for (int k = lo; k <= hi; k++)
-            {
-                //lo is greater than mid save mid+1
-                if (i > mid)
+                int i = lo;
+                int j = mid + 1;
+                //copy the droids to the auxillary
+                for (int k = lo; k <= mid; k++)
                 {
-                    a[k] = aux[j++];
+                    aux[k] = a[k];
                 }
-                //mid+1 is greater than hi save lo
-                else if (j > hi)
+                //loop through comparing points
+                for (int k = lo; k <= hi; k++)
                 {
-                    a[k] = aux[i++];
+                    //lo is greater than mid save mid+1
+                    if (i > mid)
+                    {
+                        a[k] = aux[j++];
+                    }
+                    //mid+1 is greater than hi save lo
+                    else if (j > hi)
+                    {
+                        a[k] = aux[i++];
+                    }
+                    //shift right droid left if total cost is less than the one on the left
+                    else if (aux[j].CompareTo(aux[i]) <= 0)
+                    {
+                        a[k] = aux[j++];
+                    }
+                    //save lo 
+                    else
+                    {
+                        a[k] = aux[i++];
+                    }
                 }
-                //shift right droid left if total cost is less than the one on the left
-                else if (aux[j].CompareTo(aux[i]) < 0)
-                {
-                    a[k] = aux[j++];
-                }
-                //save lo 
-                else
-                {
-                    a[k] = aux[i++];
-                }
-            }
         }
         public void sortDroidCost()
         {
-            sort(droidCollection, 0, lengthOfCollection - 1);
+            sort(droidCollection, 0, lengthOfCollection- 1);
         }
 
     }

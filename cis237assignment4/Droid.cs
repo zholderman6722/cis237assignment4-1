@@ -72,7 +72,7 @@ namespace cis237assignment4
 
         public virtual int CompareTo(Droid otherDroid)
         {
-            return this.TotalCost.CompareTo(otherDroid.totalCost);
+            return this.TotalCost.CompareTo(otherDroid.TotalCost);
         }
     }
 }
